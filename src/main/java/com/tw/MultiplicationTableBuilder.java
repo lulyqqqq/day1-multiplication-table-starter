@@ -1,5 +1,8 @@
 package com.tw;
 
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class MultiplicationTableBuilder {
 
     public static void main(String[] args) {
@@ -10,40 +13,27 @@ public class MultiplicationTableBuilder {
         System.out.println(multiplicationTable);
     }
 
-    public Boolean isRangeNumber(int start, int end) {
+    public static Boolean isRangeNumber(int start, int end) {
         return start > 1 && start <= 1000 && end > 1;
     }
 
-    public Boolean isGreaterThen(int start, int end) {
+    public static Boolean isGreaterThen(int start, int end) {
         return end <= 1000 && start <= end;
     }
 
-    // 计算乘法表字符串
-    public String calculateRepresentsString(int start, int end) {
-        if (!isRangeNumber(start,end)){
+    public static String calculateRepresentsString(int start, int end) {
+        if (!isRangeNumber(start, end) || !isGreaterThen(start, end)) {
             return null;
         }
-        if (!isGreaterThen(start,end)){
-            return null;
-        }
-        StringBuilder results = new StringBuilder();
-        for (int i = start; i <= end; i++) {
-            String representsString = generateTemplateRow(start, i);
-            results.append(representsString);
-            if (i < end) {
-                results.append("\n");
-            }
-        }
-        return results.toString();
+        return IntStream.rangeClosed(start, end)
+                .mapToObj(i -> generateTemplateRow(start, i))
+                .collect(Collectors.joining("\n"));
     }
 
-    // 生成单行的乘法表
-    public String generateTemplateRow(int start, int row) {
-        StringBuilder representsString = new StringBuilder();
-        for (int i = start; i <= row; i++) {
-            representsString.append(i).append("*").append(row).append("=").append(i * row).append(" ");
-        }
-        return representsString.toString().trim();
+    public static String generateTemplateRow(int start, int row) {
+        return IntStream.rangeClosed(start, row)
+                .mapToObj(i -> i + "*" + row + "=" + (i * row))
+                .collect(Collectors.joining(" "));
     }
 
 }
