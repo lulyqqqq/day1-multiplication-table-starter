@@ -7,8 +7,6 @@ public class MultiplicationTableBuilder {
         int start = 2;
         int end = 4;
         String multiplicationTable = builder.calculateRepresentsString(start, end);
-        System.out.println(builder.isRangeNumber(start, end));
-        System.out.println(builder.isGreaterThen(start, end));
         System.out.println(multiplicationTable);
     }
 
