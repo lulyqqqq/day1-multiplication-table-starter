@@ -8,7 +8,6 @@ public class MultiplicationTableBuilder {
         int end = 9;
         System.out.println(builder.isRangeNumber(start, end));
         System.out.println(builder.isGreaterThen(start, end));
-
     }
 
     public Boolean isRangeNumber(int start, int end) {
@@ -20,6 +19,14 @@ public class MultiplicationTableBuilder {
     }
 
 
+    // 生成单行的乘法表
+    public String generateTemplateRow(int start, int row) {
+        StringBuilder representsString = new StringBuilder();
+        for (int i = start; i <= row; i++) {
+            representsString.append(i).append("*").append(row).append("=").append(i * row).append(" ");
+        }
+        return representsString.toString();
+    }
 
 }
 //2*2=4
