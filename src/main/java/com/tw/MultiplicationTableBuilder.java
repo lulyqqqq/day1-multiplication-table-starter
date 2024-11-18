@@ -5,9 +5,11 @@ public class MultiplicationTableBuilder {
     public static void main(String[] args) {
         MultiplicationTableBuilder builder = new MultiplicationTableBuilder();
         int start = 2;
-        int end = 9;
+        int end = 4;
+        String multiplicationTable = builder.calculateRepresentsString(start, end);
         System.out.println(builder.isRangeNumber(start, end));
         System.out.println(builder.isGreaterThen(start, end));
+        System.out.println(multiplicationTable);
     }
 
     public Boolean isRangeNumber(int start, int end) {
@@ -18,6 +20,24 @@ public class MultiplicationTableBuilder {
         return end <= 1000 && start <= end;
     }
 
+    // 计算乘法表字符串
+    public String calculateRepresentsString(int start, int end) {
+        if (!isRangeNumber(start,end)){
+            return null;
+        }
+        if (!isGreaterThen(start,end)){
+            return null;
+        }
+        StringBuilder results = new StringBuilder();
+        for (int i = start; i <= end; i++) {
+            String representsString = generateTemplateRow(start, i);
+            results.append(representsString);
+            if (i < end) {
+                results.append("\n");
+            }
+        }
+        return results.toString();
+    }
 
     // 生成单行的乘法表
     public String generateTemplateRow(int start, int row) {
@@ -25,7 +45,7 @@ public class MultiplicationTableBuilder {
         for (int i = start; i <= row; i++) {
             representsString.append(i).append("*").append(row).append("=").append(i * row).append(" ");
         }
-        return representsString.toString();
+        return representsString.toString().trim();
     }
 
 }
