@@ -13,15 +13,15 @@ public class MultiplicationTableBuilder {
         System.out.println(multiplicationTable);
     }
 
-    public static Boolean isRangeNumber(int start, int end) {
+    public  Boolean isRangeNumber(int start, int end) {
         return start > 1 && start <= 1000 && end > 1;
     }
 
-    public static Boolean isGreaterThen(int start, int end) {
+    public  Boolean isGreaterThen(int start, int end) {
         return end <= 1000 && start <= end;
     }
 
-    public static String calculateRepresentsString(int start, int end) {
+    public  String calculateRepresentsString(int start, int end) {
         if (!isRangeNumber(start, end) || !isGreaterThen(start, end)) {
             return null;
         }
@@ -30,7 +30,7 @@ public class MultiplicationTableBuilder {
                 .collect(Collectors.joining("\n"));
     }
 
-    public static String generateTemplateRow(int start, int row) {
+    public  String generateTemplateRow(int start, int row) {
         return IntStream.rangeClosed(start, row)
                 .mapToObj(i -> i + "*" + row + "=" + (i * row))
                 .collect(Collectors.joining(" "));
