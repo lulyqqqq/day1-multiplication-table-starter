@@ -13,8 +13,8 @@ public class MultiplicationTableBuilder {
         System.out.println(multiplicationTable);
     }
 
-    public  Boolean isRangeNumber(int start, int end) {
-        return start > 1 && start <= 1000 && end > 1 && end <= 1000;
+    public  Boolean isRangeNumber(int number) {
+        return number > 1 && number <= 1000;
     }
 
     public  Boolean isGreaterTen(int start, int end) {
@@ -22,7 +22,7 @@ public class MultiplicationTableBuilder {
     }
 
     public  String calculateRepresentsString(int start, int end) {
-        if (!isRangeNumber(start, end) || !isGreaterTen(start, end)) {
+        if (!isRangeNumber(start) || !isRangeNumber(start) || !isGreaterTen(start, end)) {
             return null;
         }
         return IntStream.rangeClosed(start, end)
