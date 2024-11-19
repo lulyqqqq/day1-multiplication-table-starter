@@ -9,7 +9,7 @@ public class MultiplicationTableBuilder {
         MultiplicationTableBuilder builder = new MultiplicationTableBuilder();
         int start = 2;
         int end = 4;
-        String multiplicationTable = builder.calculateRepresentsString(start, end);
+        String multiplicationTable = builder.printMultiplicationTable(start, end);
         System.out.println(multiplicationTable);
     }
 
@@ -22,9 +22,6 @@ public class MultiplicationTableBuilder {
     }
 
     public  String calculateRepresentsString(int start, int end) {
-        if (!isRangeNumber(start) || !isRangeNumber(start) || !isGreaterTen(start, end)) {
-            return null;
-        }
         return IntStream.rangeClosed(start, end)
                 .mapToObj(i -> generateTemplateRow(start, i))
                 .collect(Collectors.joining("\n"));
@@ -34,6 +31,17 @@ public class MultiplicationTableBuilder {
         return IntStream.rangeClosed(start, row)
                 .mapToObj(i -> i + "*" + row + "=" + (i * row))
                 .collect(Collectors.joining(" "));
+    }
+
+    public boolean isValidNumber(int start,int end){
+        return !isRangeNumber(start) || !isRangeNumber(end) || !isGreaterTen(start, end);
+    }
+
+    public  String printMultiplicationTable(int start,int end){
+        if (isValidNumber(start,end)){
+            return null;
+        }
+        return calculateRepresentsString(start,end);
     }
 
 }
