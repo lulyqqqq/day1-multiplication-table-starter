@@ -14,15 +14,15 @@ public class MultiplicationTableBuilder {
     }
 
     public  Boolean isRangeNumber(int start, int end) {
-        return start > 1 && start <= 1000 && end > 1;
+        return start > 1 && start <= 1000 && end > 1 && end <= 1000;
     }
 
-    public  Boolean isGreaterThen(int start, int end) {
-        return end <= 1000 && start <= end;
+    public  Boolean isGreaterTen(int start, int end) {
+        return  start <= end;
     }
 
     public  String calculateRepresentsString(int start, int end) {
-        if (!isRangeNumber(start, end) || !isGreaterThen(start, end)) {
+        if (!isRangeNumber(start, end) || !isGreaterTen(start, end)) {
             return null;
         }
         return IntStream.rangeClosed(start, end)
